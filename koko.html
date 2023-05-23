@@ -1,0 +1,102 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"> </script>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
+    <title>Home Page</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" charset="utf-8">
+    <style type="text/css">
+        html,
+        body {
+            height: 100%;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            font-family: sans-serif;
+        }
+
+        a {
+            text-decoration: none;
+        }
+
+        img {
+            max-width: 100%;
+            width: 100%;
+            height: 100%;
+        }
+        #myImage {
+            width: 350px;
+            height: 500px;
+            float: right;
+            margin-right: 100px;
+            margin-top: 80px;
+            border: 2px solid white;
+            border-radius: 10px;
+
+        }
+        .cover-background {
+  background-image: url('cover.png');
+  background-size: cover;
+  background-position: center;
+  height: 100vh;
+}
+
+@media (max-width: 767px) {
+  .cover-background {
+    background-image: url('cover.png');
+  }
+}
+
+    </style>
+</head>
+
+<body>
+        <img id="myImage" src="1.jpg" />
+        <div class="cover-background"></div>
+
+
+        <script>
+            // Get a reference to the image element
+            const myImage = document.getElementById('myImage');
+            let currentImage = 1;
+
+            // Add an event listener for when the mouse is over the image
+            myImage.addEventListener('mouseover', () => {
+                // Increase the size of the image by 20%
+                myImage.style.transform = 'scale(1.2)';
+                myImage.style.transition = 'transform 0.2s';
+            });
+
+            // Add an event listener for when the mouse leaves the image
+            myImage.addEventListener('mouseout', () => {
+                // Reset the image size back to normal
+                myImage.style.transform = 'scale(1)';
+                myImage.style.transition = 'transform 0.2s';
+            });
+
+            // Add an event listener for when the image is clicked
+            myImage.addEventListener('click', () => {
+                // Change the image source to the next image and return to the first cover after ending
+                currentImage++;
+                if (currentImage > 8) {
+                    currentImage = 1;
+                }
+                myImage.src = `${currentImage}.jpg`;
+            });
+
+            // Change the image source every 2.5 seconds and return to the first cover after ending
+            setInterval(() => {
+                currentImage++;
+                if (currentImage > 30) {
+                    currentImage = 1;
+                }
+                myImage.src = `${currentImage}.jpg`;
+            }, 2500);
+        </script>
+
+
+</body>
+
+</html>
